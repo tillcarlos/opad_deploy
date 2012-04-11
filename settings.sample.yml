@@ -1,0 +1,9 @@
+opad:
+  server: hellohostingprovider.com
+  deploy_to: /srv/opad/
+  ssh_user: tielefeld
+  ssh_port: 22
+  tslib_path: /my/local/path/tslib
+  opad_path: /my/local/path/plugin/
+  cache_path: /my/local/path/cache/
+
