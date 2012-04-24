@@ -1,4 +1,4 @@
-opad:
+opad_deploy:
   server: hellohostingprovider.com
   deploy_to: /srv/opad/
   ssh_user: tielefeld
@@ -6,4 +6,5 @@ opad:
   tslib_path: /my/local/path/tslib
   opad_path: /my/local/path/plugin/
   cache_path: /my/local/path/cache/
+  support_path: /my/local/path/support/
 

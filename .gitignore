@@ -3,7 +3,8 @@
 .DS_Store
 .rvmrc
 .rsync_cache
-
+runlocally
+shared
 settings.yml
 
 

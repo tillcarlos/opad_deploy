@@ -1,0 +1,14 @@
+development:
+  aspects_yml: /srv/opad/current/common/opad.aspects.yml
+  db_name: opad_xingdeploy
+  db_collection: opad_xingdeploy_1
+  queue_server: logjamdb.xing.hh
+  queue_exchange: logjam-performance-data-app-production
+  #queue_server: localhost
+  #queue_exchange: opad-logjam-generated
+  alerting_server: localhost
+  alerting_exchange: opad 
+  queue_key: all_pages
+  r_includes: r_scripts
+  start_time: 
+
