@@ -8,6 +8,15 @@
    lengthUnit: HOURS
    threshold: 0.42
 - !aspect
+   delta: 1
+   deltaUnit: MINUTES
+   forecastMethod: MEAN
+   identifier: apttm.Fmean.D1min.L1h
+   attribute: total_time_mod
+   lengthValue: 1
+   lengthUnit: HOURS
+   threshold: 0.42
+- !aspect
    delta: 5
    deltaUnit: MINUTES
    forecastMethod: MEAN
