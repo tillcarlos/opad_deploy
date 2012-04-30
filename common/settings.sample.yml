@@ -1,10 +1,55 @@
-opad_deploy:
-  server: hellohostingprovider.com
+server:
+  host: opad-1.monitor.fra1.xing.com
   deploy_to: /srv/opad/
-  ssh_user: tielefeld
+  ssh_user: opad
   ssh_port: 22
-  tslib_path: /my/local/path/tslib
-  opad_path: /my/local/path/plugin/
-  cache_path: /my/local/path/cache/
-  support_path: /my/local/path/support/
-
+  sleepy_mongoose:
+    path: /srv/sleepy.mongoose/
+local:
+  tslib_path: /.../tslib/
+  opad_path: /.../plugin/
+  cache_path: /.../deployment/cache/
+  graph_path: /.../timeseries-d3/graph/
+  support_path: /.../support/
+  daemons_path: /.../daemons/
+opad:
+  aspect_id: apttm.Fmean.D1min.L1h
+graph:
+  mongo_host: localhost
+  mongo_db: opad_production
+  mongo_collection: session2
+  web_port: 3000
+  sort: '{"time" : -1}'
+  criteria: ''
+  limit: 80
+  from_time: 1317427200000   # from 1st october 2011
+  to_time: 1420070400000     # to jan 1st 1015
+support:
+  alerting_queue:
+    host: localhost
+    exchange: opad
+    port:  55672
+  websocket: 
+    port: 8080
+  generator:
+    period: 1
+    host: 127.0.0.1
+    exchange: logjam-gen
+    keys: key_1, key_2
+    fields: "sample_time, response_time, processing_time"
+  preprocessor:
+    host_in: rabbithost.example.org
+    host_out: localhost
+    exchange_in: logjam-input-quuq
+    exchange_out: logjam-local
+    key_in: key42
+    key_out: key42
+    attribute_out: response_time
+  replayer:
+    host: 127.0.0.1
+    exchange: logjam-gen
+    delay: 1
+    filename: "recordings/test.json.text"
+    keys: "key42, key43"
+daemons:
+  pid_folder: /srv/opad/shared/pids/
