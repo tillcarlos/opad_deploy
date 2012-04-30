@@ -24,8 +24,8 @@ namespace :opad do
     puts "Building TSLib"
     local_exec "cd #{conf[:local]['tslib_path']} && ant && cp dist/tslib.jar #{conf[:local]['opad_path']}lib/"
 
-    puts "Building OPAD"
-    local_exec "cd #{conf[:local]['opad_path']} && ant"
+    puts "Building OPAD and OPAD Servlet"
+    local_exec "cd #{conf[:local]['opad_path']} && ant && ant build-servlet"
   end
   
   task :bundle do
@@ -44,7 +44,18 @@ namespace :opad do
     local_exec "cp #{conf[:local]['opad_path']}build.xml* #{conf[:local]['cache_path']}opad/lib/ "
     local_exec "cp #{conf[:local]['opad_path']}lib/* #{conf[:local]['cache_path']}opad/lib/ "
     local_exec "cp #{conf[:local]['opad_path']}dist/kieker.opad.jar #{conf[:local]['cache_path']}opad/lib/ "
-    
+  end
+  
+  task :servlet do
+    puts "Copying the servlet war"
+    local_exec "cp #{conf[:local]['opad_path']}dist/opad-servlet.war #{conf[:local]['cache_path']}opad/lib/ "
+    local_exec "cd #{conf[:local]['tslib_path']} && ant && cp dist/tslib.jar #{conf[:local]['opad_path']}lib/"
+
+    puts "Building OPAD Servlet"
+    local_exec "cd #{conf[:local]['opad_path']} && ant build-servlet"
+  end
+  
+  task :support do    
     puts "Copying Graph Frontend"
     local_exec "cp -r #{conf[:local]['graph_path']} #{conf[:local]['cache_path']}graph "
 
@@ -66,6 +77,8 @@ namespace :opad do
   end
   after "opad:all", "opad:build"
   after "opad:all", "opad:bundle"
+  after "opad:all", "opad:servlet"
+  after "opad:all", "opad:support"
   after "opad:all", "deploy"
   
 end
@@ -77,7 +90,7 @@ namespace :customs do
     run "rm -rf  #{release_path}/.git "
   end
   task :config, :roles => :app do
-    %w(graph kieker sleepy_mongoose websocket anomalyscore_generator).each do |daemon|
+    %w(graph opad sleepy_mongoose websocket anomalyscore_generator).each do |daemon|
       run "rm -f #{shared_path}/daemons/#{daemon}.daemon.sh "
       run "ln -s #{current_path}/daemons/#{daemon}.rb #{shared_path}/daemons/#{daemon}.daemon.sh  "
     end

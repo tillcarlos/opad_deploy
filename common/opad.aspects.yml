@@ -34,33 +34,3 @@
    lengthValue: 1
    lengthUnit: HOURS
    threshold: 0.42
-- !aspect
-   delta: 20
-   deltaUnit: MINUTES
-   forecastMethod: MEAN
-   identifier: aptt.Fmean.D20min.L2h
-   attribute: total_time
-   lengthValue: 2
-   lengthUnit: HOURS
-   threshold: 0.42
-- !aspect
-   delta: 30
-   deltaUnit: MINUTES
-   forecastMethod: MEAN
-   identifier: aptt.Fmean.D30min.L3h
-   attribute: total_time
-   lengthValue: 3
-   lengthUnit: HOURS
-   threshold: 0.42
-- !aspect
-   delta: 1
-   deltaUnit: HOURS
-   forecastMethod: MEAN
-   identifier: aptt.Fmean.D1h.L3h
-   attribute: total_time
-   lengthValue: 3
-   lengthUnit: HOURS
-   threshold: 0.42
-   
-   
-   

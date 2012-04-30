@@ -1,5 +1,6 @@
 development:
   aspects_yml: /srv/opad/current/common/opad.aspects.yml
+  db_name: opad_production
   db_collection: session2
   queue_server: localhost
   queue_exchange: logjam-local 
